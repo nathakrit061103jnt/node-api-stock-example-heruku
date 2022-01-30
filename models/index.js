@@ -1,7 +1,7 @@
 const dbConfig = require("../configs/db.config");
 const URI =
   "postgres://fsjifywvfraors:db7c1a43e608aafa926a221f762755aede62a9e9192356a6352cdfc2c1b37f05@ec2-54-208-139-247.compute-1.amazonaws.com:5432/dehgbcc4cv2opo";
-// const Sequelize = require("sequelize");
+const Sequelize = require("sequelize");
 // const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 //   host: dbConfig.HOST,
 //   dialect: dbConfig.dialect,
