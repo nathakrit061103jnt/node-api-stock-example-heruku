@@ -1,6 +1,5 @@
 const dbConfig = require("../configs/db.config");
-const URI =
-  "postgres://fsjifywvfraors:db7c1a43e608aafa926a221f762755aede62a9e9192356a6352cdfc2c1b37f05@ec2-54-208-139-247.compute-1.amazonaws.com:5432/dehgbcc4cv2opo";
+
 const Sequelize = require("sequelize");
 // const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 //   host: dbConfig.HOST,
@@ -17,14 +16,23 @@ const Sequelize = require("sequelize");
 //   },
 // });
 
-const sequelize = new Sequelize(URI, {
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle,
+sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
   },
 });
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
 
 const db = {};
 
