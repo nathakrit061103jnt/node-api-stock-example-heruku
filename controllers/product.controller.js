@@ -48,7 +48,7 @@ exports.create = async (req, res) => {
 
       const result = await Product.create(product);
       if (result) {
-        await uploadImage(imageType, oldpath, newpath);
+        uploadImage(imageType, oldpath, newpath);
         res.json({
           result: constants.kResultOk,
           message: JSON.stringify(result),
