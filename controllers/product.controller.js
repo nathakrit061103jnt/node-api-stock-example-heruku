@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require("uuid");
 const uploadImage = async (imageType, oldpath, newpath) => {
   if (imageType == "image") {
     fs.rename(oldpath, newpath, (err) => {
-      if (err) throw err;
+      if (err) console.log(err);
     });
   }
 };
