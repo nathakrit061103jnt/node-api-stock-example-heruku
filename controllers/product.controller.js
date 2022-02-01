@@ -4,12 +4,15 @@ const Op = db.Sequelize.Op;
 const constants = require("../constants");
 const formidable = require("formidable");
 const fs = require("fs");
+const fse = require("fs-extra");
+
 const { v4: uuidv4 } = require("uuid");
 
 // Upload Image
 const uploadImage = async (imageType, oldpath, newpath) => {
   if (imageType == "image") {
-    fs.renameSync(oldpath, newpath);
+    // fs.renameSync(oldpath, newpath);
+    fs.moveSync(oldpath, newpath);
   }
 };
 
