@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const authRouter = require("./routes/auth.routes");
 const productsRouter = require("./routes/product.routes");
+const usersRouter = require("./routes/users.routes");
 
 const session = require("express-session");
 const passport = require("passport");
@@ -57,6 +58,11 @@ app.use(
   "/products",
   passport.authenticate("jwt", { session: false }),
   productsRouter
+);
+app.use(
+  "/users",
+  passport.authenticate("jwt", { session: false }),
+  usersRouter
 );
 
 // catch 404 and forward to error handler

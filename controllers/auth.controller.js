@@ -69,3 +69,23 @@ exports.register = async (req, res) => {
       .json({ result: constants.kResultNok, message: JSON.stringify(error) });
   }
 };
+
+exports.decodeUser = async (req, res) => {
+  try {
+    const headers = req;
+    const getToken = ExtractJwt.fromAuthHeaderAsBearerToken();
+    const token = getToken(headers);
+    const user = jwt.decode(token);
+    const { u_id, u_email } = user;
+    res.status(201).json({
+      user: {
+        u_id,
+        u_email,
+      },
+    });
+  } catch (error) {
+    res
+      .status(403)
+      .json({ result: constants.kResultNok, message: JSON.stringify(error) });
+  }
+};
