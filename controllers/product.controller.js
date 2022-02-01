@@ -12,7 +12,7 @@ const { v4: uuidv4 } = require("uuid");
 const uploadImage = async (imageType, oldpath, newpath) => {
   if (imageType == "image") {
     // fs.renameSync(oldpath, newpath);
-    fs.moveSync(oldpath, newpath);
+    fse.moveSync(oldpath, newpath);
   }
 };
 
